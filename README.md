@@ -2,6 +2,10 @@
 
 A small, dependency-free web app that generates QR codes entirely in your browser. No server, no tracking, and nothing you type is sent anywhere.
 
+**Live demo: [qr-code-generator-omega-indol.vercel.app](https://qr-code-generator-omega-indol.vercel.app/)**
+
+![QR Code Generator screenshot](docs/screenshot.png)
+
 ## Features
 
 - **Links and text**: bare domains like `amazon.com` are automatically turned into `https://amazon.com`. Other schemes (`mailto:`, `tel:`, `http:`) and plain text are left as-is.
