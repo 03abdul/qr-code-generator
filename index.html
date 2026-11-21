@@ -3,21 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qr Code Generator</title>
+    <meta name="description" content="Free offline QR code generator. Make QR codes for links, text and Wi-Fi, then download as PNG or SVG.">
+    <meta name="color-scheme" content="light dark">
+    <title>QR Code Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Qr Code Generator</h1>
-        <section class="mainarea">
-            <label for="textfield" class="text">Website address</label>
-            <input type="text" placeholder="E.g. amazon.com" id="textfield">
-            <button id="button">Generate</button><br>
-            <img src="" alt="Qr Code" id="image">
-        </section>
-    </div>
+    <main class="container">
+        <h1>QR Code Generator</h1>
+        <p class="subtitle">Free, private and works offline. Nothing leaves your browser.</p>
+        <form class="mainarea" id="form" novalidate>
+            <div class="tabs" role="group" aria-label="Content type">
+                <button type="button" class="tab active" data-mode="url" aria-pressed="true">Link / Text</button>
+                <button type="button" class="tab" data-mode="wifi" aria-pressed="false">Wi-Fi</button>
+            </div>
 
+            <div id="panel-url">
+                <label for="textfield" class="text">Website address or text</label>
+                <input type="text" placeholder="E.g. amazon.com" id="textfield" autocomplete="off" autofocus>
+            </div>
 
+            <div id="panel-wifi" hidden>
+                <label for="ssid" class="text">Network name (SSID)</label>
+                <input type="text" id="ssid" autocomplete="off">
+                <label for="wifipass" class="text">Password</label>
+                <input type="text" id="wifipass" autocomplete="off">
+                <label for="wifisec" class="text">Security</label>
+                <select id="wifisec">
+                    <option value="WPA">WPA/WPA2/WPA3</option>
+                    <option value="WEP">WEP</option>
+                    <option value="nopass">None</option>
+                </select>
+            </div>
+
+            <details class="options">
+                <summary>Options</summary>
+                <div class="optrow">
+                    <label for="fg">Color</label>
+                    <input type="color" id="fg" value="#000000">
+                    <label for="bg">Background</label>
+                    <input type="color" id="bg" value="#ffffff">
+                </div>
+                <div class="optrow">
+                    <label for="ecl">Error correction</label>
+                    <select id="ecl">
+                        <option value="L">Low (7%)</option>
+                        <option value="M" selected>Medium (15%)</option>
+                        <option value="Q">Quartile (25%)</option>
+                        <option value="H">High (30%)</option>
+                    </select>
+                </div>
+            </details>
+
+            <p id="error" class="error" role="alert" hidden></p>
+            <button type="submit" id="button">Generate</button>
+
+            <div id="result" class="result" hidden>
+                <canvas id="canvas" width="240" height="240" role="img" aria-label="Generated QR code"></canvas>
+                <div class="actions">
+                    <button type="button" id="dl-png" class="secondary">Download PNG</button>
+                    <button type="button" id="dl-svg" class="secondary">Download SVG</button>
+                    <button type="button" id="copy" class="secondary">Copy image</button>
+                </div>
+                <p id="status" class="status" role="status"></p>
+            </div>
+        </form>
+    </main>
+
+    <script src="qrcode.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
